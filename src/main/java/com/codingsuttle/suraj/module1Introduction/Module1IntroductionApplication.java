@@ -1,34 +1,43 @@
 package com.codingsuttle.suraj.module1Introduction;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootApplication
 public class Module1IntroductionApplication implements CommandLineRunner {
+  //  @Autowired
+  // NotificationService notificationService;
+   // final NotificationService notificationServiceObj;
+   // public Module1IntroductionApplication(@Qualifier("smsNoti") NotificationService notificationServiceObj){
+     //   this.notificationServiceObj=notificationServiceObj;
+   // }
+
+   // public Module1IntroductionApplication( NotificationService notificationServiceObj){
+    //       this.notificationServiceObj=notificationServiceObj;
+      //   }
     @Autowired
-    PaymentService paymentService1;
-    @Autowired
-    PaymentService paymentService2;
+   Map<String,NotificationService> notificationServiveMap=new HashMap<>();
 
 	public static void main(String[] args) {
 
         SpringApplication.run(Module1IntroductionApplication.class, args);
-      //  PaymentService paymentServiceObj=new PaymentService();
-       // paymentServiceObj.pay();
-       // PaymentService paymentService;
-       // paymentService.pay();
+
 	}
 
     @Override
     public void run(String... args) throws Exception {
-        // paymentServic.pay();
-        System.out.println(paymentService1);
-        System.out.println(paymentService2);
-        paymentService1.pay();
-        paymentService2.pay();
-        //new code
-        //drefhgfr
+        //NotificationService notificationService=new EmailNotificationService();
+        //notificationServiceObj.send("Hello");
+        for(var notificationService:notificationServiveMap.entrySet()){
+            System.out.println(notificationService.getKey());
+            notificationService.getValue().send("Hello");
+        }
+        }
     }
-}
+
